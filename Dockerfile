@@ -17,6 +17,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --silent
 COPY . .
+COPY --from=vendor /app/vendor ./vendor
 RUN npm run build
 
 # 3) Final runtime: PHP 8.3 + Apache
