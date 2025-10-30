@@ -9,7 +9,7 @@ RUN apk add --no-cache icu-dev && docker-php-ext-install intl
 # Copiar TODO el proyecto antes de instalar
 COPY . .
 
-RUN composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --no-progress --optimize-autoloader
 
 # 2) Node build for Vite assets
 FROM node:20-alpine AS assets
