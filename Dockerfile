@@ -21,20 +21,22 @@ FROM php:8.3-apache AS app
 
 # Install system dependencies and PHP extensions
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		git \
-		unzip \
-		libzip-dev \
-		libpng-dev \
-		libonig-dev \
-		libxml2-dev \
-	&& docker-php-ext-install \
-		pdo_mysql \
-		mbstring \
-		exif \
-		bcmath \
-		zip \
-	&& rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends \
+        git \
+        unzip \
+        libzip-dev \
+        libpng-dev \
+        libonig-dev \
+        libxml2-dev \
+        libicu-dev \
+    && docker-php-ext-install \
+        intl \
+        pdo_mysql \
+        mbstring \
+        exif \
+        bcmath \
+        zip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite for Laravel
 RUN a2enmod rewrite
