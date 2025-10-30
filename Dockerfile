@@ -4,12 +4,11 @@
 FROM composer:2 AS vendor
 WORKDIR /app
 
-# Instalar y habilitar intl
-RUN apt-get update && apt-get install -y libicu-dev && docker-php-ext-install intl
+# Instalar dependencias necesarias para intl en Alpine
+RUN apk add --no-cache icu-dev && docker-php-ext-install intl
 
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader
-
 
 # 2) Node build for Vite assets
 FROM node:20-alpine AS assets
