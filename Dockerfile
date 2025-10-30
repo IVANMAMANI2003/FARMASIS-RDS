@@ -4,10 +4,11 @@
 FROM composer:2 AS vendor
 WORKDIR /app
 
-# Instalar dependencias necesarias para intl en Alpine
 RUN apk add --no-cache icu-dev && docker-php-ext-install intl
 
-COPY composer.json composer.lock ./
+# Copiar TODO el proyecto antes de instalar
+COPY . .
+
 RUN composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader
 
 # 2) Node build for Vite assets
