@@ -28,6 +28,9 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Livewire Styles para el chatbot -->
+  @livewireStyles
+
   <!-- =======================================================
   * Template Name: Medicio
   * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
@@ -1226,6 +1229,23 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Widget flotante del chatbot - disponible para todos -->
+  @if(view()->exists('livewire.chatbot-widget'))
+    <livewire:chatbot-widget />
+  @else
+    <!-- Fallback: Botón simple si Livewire no carga -->
+    <div style="position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 99999 !important;">
+      <a href="{{ route('dashboard') }}" style="background-color: #2563eb !important; color: white !important; border-radius: 50% !important; width: 64px !important; height: 64px !important; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.6) !important; display: flex !important; align-items: center !important; justify-content: center !important; text-decoration: none !important; border: 3px solid white !important;" title="Ir al chatbot">
+        <svg style="width: 28px !important; height: 28px !important; fill: none; stroke: white; stroke-width: 2;" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+      </a>
+    </div>
+  @endif
+
+  <!-- Livewire Scripts para el chatbot -->
+  @livewireScripts
 
 </body>
 

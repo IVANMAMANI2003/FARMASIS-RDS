@@ -4,6 +4,7 @@ use App\Livewire\CategoryMain;
 use App\Livewire\PurchaseMain;
 use App\Livewire\SalesMain;
 use App\Livewire\SupplierMain;
+use App\Livewire\ChatbotMain;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -25,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('suppliers',SupplierMain::class)->name('suppliers');
     Route::get('purchase',PurchaseMain::class)->name('purchase');
     Route::get('sales',SalesMain::class)->name('sales');
+    Route::get('chatbot',ChatbotMain::class)->name('chatbot');
 });
 
 require __DIR__.'/auth.php';

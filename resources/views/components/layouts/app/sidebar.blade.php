@@ -18,6 +18,7 @@
                     <flux:navlist.item icon="users" :href="route('suppliers')" :current="request()->routeIs('suppliers')" wire:navigate>{{ __('Proveedores') }}</flux:navlist.item>
                     <flux:navlist.item icon="cube" :href="route('purchase')" :current="request()->routeIs('purchase')" wire:navigate>{{ __('Compras') }}</flux:navlist.item>
                     <flux:navlist.item icon="shopping-bag" :href="route('sales')" :current="request()->routeIs('sales')" wire:navigate>{{ __('Realizar venta') }}</flux:navlist.item>
+                    <flux:navlist.item icon="chat-bubble-left-right" :href="route('chatbot')" :current="request()->routeIs('chatbot')" wire:navigate>{{ __('Chatbot') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -149,5 +150,13 @@
             });
         </script>
         @stack('js')
+
+        <!-- Widget flotante del chatbot - debe estar después de Livewire scripts -->
+        @auth
+            @if(auth()->check())
+                <!-- Usuario autenticado: {{ auth()->user()->name }} -->
+                <livewire:chatbot-widget />
+            @endif
+        @endauth
     </body>
 </html>
